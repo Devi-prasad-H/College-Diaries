@@ -55,7 +55,18 @@ padding: 20px;
 box-sizing: border-box;
 }
 
-.about-page img {
+.about-page img {/* Large Mobile */
+@media (min-width: 481px) and (max-width: 767px) {
+.about-page {
+padding: 15px;
+}
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+.about-page {
+padding: 10px;
+}
 max-width: 100%;
 height: auto;
 }
@@ -82,18 +93,7 @@ padding: 20px;
 }
 }
 
-/* Large Mobile */
-@media (min-width: 481px) and (max-width: 767px) {
-.about-page {
-padding: 15px;
-}
-}
 
-/* Small Mobile */
-@media (max-width: 480px) {
-.about-page {
-padding: 10px;
-}
 }
                   
 
