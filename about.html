@@ -8,6 +8,8 @@
                 background-color :#f9f8f3;
                 font-family:Arial, sans-serif;
                 color:#222;
+                padding:100px;
+                height:100vh;
             }
             h1{
                 text-align:center;
@@ -42,14 +44,57 @@
                 list-style-position:inside;
                 list-style-type:disc;
             }
-            @media (max-width:600px){
-               body{
-                padding: 15px;
-               }
-               p{
-                padding: 12px;
-               }
-            }
+            
+
+/* About Page - Base Styles */
+.about-page {
+width: 100%;
+max-width: 1200px;
+margin: 0 auto;
+padding: 20px;
+box-sizing: border-box;
+}
+
+.about-page img {
+max-width: 100%;
+height: auto;
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+.about-page {
+max-width: 1140px;
+}
+}
+
+/* Laptop */
+@media (min-width: 992px) and (max-width: 1199px) {
+.about-page {
+max-width: 960px;
+}
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+.about-page {
+max-width: 720px;
+padding: 20px;
+}
+}
+
+/* Large Mobile */
+@media (min-width: 481px) and (max-width: 767px) {
+.about-page {
+padding: 15px;
+}
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+.about-page {
+padding: 10px;
+}
+}
                   
 
 
