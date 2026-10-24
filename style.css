@@ -447,8 +447,15 @@ input:focus-visible {
 }
 
 @media(max-width:560px) {
+    header img{
+        height: 80px;
+        
+
+    }
     header {
-        padding: 22px 20px
+        padding: 2px 20px;
+        display: flex;
+        flex-direction: column;
     }
 
     nav {
