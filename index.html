@@ -1,327 +1,118 @@
-<!doctype html>
-<html lang="en">
+const grid = document.querySelector('#grid');
+const modal = document.querySelector('#modal');
+const content = document.querySelector('#modal-content');
+const search = document.querySelector('#search');
+const themeToggle = document.querySelector('#theme-toggle');
+const cards = grid ? [...grid.querySelectorAll('.card')] : [];
+let filter = 'All';
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>College Diaries — Our people, our stories</title>
-  <meta name="description" content="A student-built collection of profiles, passions and campus stories.">
-  <link rel="stylesheet" href="style.css">
-</head>
+function getStoredTheme() {
+  try {
+    return localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+  } catch {
+    return 'light';
+  }
+}
 
-<body>
-  <header>
-    <img src="images/DSU logo.PNG" alt="DSU logo" height="200px" >
-    <a class="brand" href="#">College<span>Diaries.</span></a>
-    <nav>
-      <a href="#students">The students</a>
-      <button id="guide">Contribute ↗</button>
-      <button onclick="location.href='about.html'">About Us</button>
-    </nav>
-  </header>
-  <main>
-    <section class="hero">
-      <div class="eyebrow">A STUDENT-BUILT OPEN SOURCE PROJECT</div>
-      <h1>Different people.<br>One <em>college diary.</em></h1>
-      <p>A little about us. What we love, what we’re building,<br class="desktop"> and the stories we’ll take beyond
-        campus.</p>
-      <a class="primary" href="#students">Meet the students <span>↓</span></a>
-      <div class="scribble">Your story belongs here ✦</div>
-      <div class="sticker">CREATE.<br>CONNECT.<br>CONTRIBUTE.</div>
-    </section>
-    <section id="students">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">THE PEOPLE BEHIND THE CODE</div>
-          <h2>Meet our community<span> ✦</span></h2>
-        </div>
-        <span class="demo">Illustrative demo profiles</span>
-      </div>
-      <div class="toolbar">
-        <label class="search">
-          <span>⌕</span>
-          <input id="search" type="search" placeholder="Search names, skills or interests…"
-            aria-label="Search students">
-        </label>
-        <div id="filters">
-          <button class="active" data-filter="All">All</button>
-          <button data-filter="MCA">MCA</button>
-          <button data-filter="BCA">BCA</button>
-          <button data-filter="BSc Data Science">Data Science</button>
-        </div>
-      </div>
-      <div id="grid" class="grid">
-        <article class="card" data-course="BSc Data Science">
-          <div class="portrait" style="--tint: #e1e8d9">
-            <img src="images/arsalan-war.jpeg" alt="Arsalan War profile image">
-            <span class="course">BSc Data Science</span>
-          </div>
-          <div class="card-body">
-            <h3>Arsalan War</h3>
-            <span class="year">1st year</span>
-            <p>First-year BSc Data Science student who loves coding and learning new things.</p>
-            <div class="tags"><span>C</span><span>HTML</span><span>Data</span></div>
-            <a href="https://github.com/changeatom" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <p class="story" hidden>I started college this year and I am learning C programming and web technologies.
-            </p>
-            <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-          </div>
-        </article>
-        <article class="card" data-course="BCA">
-          <div class="portrait" style="--tint: #e1e8d9">
-            <img src="images/SHIVAANI.jpeg" alt="shivaani profile image" loading="lazy">
-            <span class="course">BCA</span>
-          </div>
-          <div class="card-body">
-            <h3>Shivaani </h3>
-            <span class="year">1st year</span>
-            <p>Building things,breaking things,learning from both.</p>
-            <div class="tags"><span>python</span><span>c</span><span>Dancer</span></div>
-            <br><a href="https://github.com/shivaani2011">My Github</a>
+function setTheme(isDark) {
+  document.body.dataset.theme = isDark ? 'dark' : 'light';
 
-            <p class="story" hidden>I turn coffee into code and ideas into little things for the web. This is a sample
-              profile. Replace it with your own introduction, projects or favourite college memory.</p>
-            <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-          </div>
-        </article>
-        <article class="card" data-course="BSc Data Science">
-          <div class="portrait" style="--tint: #eadfd4">
-            <img src="images/khalid.jpg" alt="Meera Rao profile image" loading="lazy"
-              style="border: 5px solid #0e2e6d;">
-            <span class="course">BSc Data Science</span>
-            <a href="https://github.com/khalidsaifullah024"
-             target="_blank"
-             rel="noopener noreferrer">
-             GitHub Profile
-            </a>          
-          </div>
-          <div style="border: 3px solid black" class="card-body">
-            <h3>Khalid Saifullah</h3>
-            <span class="year">1st year</span>
-            <p>I am passionate about technology, programming and exploring the world of data. </p>
-            <div class="tags"><span>C<span>HTML</span><span>CSS</span><span>DSA</span><span>Travelling</span></div>
-            <p class="story-hidden">
-              My name is Khalid Saifullah. I am a first-year B.Sc. Data
-              Science student at Dayananda Sagar University. I am interested
-              in technology and programming. I am currently
-              learning C programming, HTML and CSS to improvemy technical
-              skills. In my free time, I enjoy playing cricket and travelling.
-              My goal is to become a Data Scientist and use technology to solve
-              real-world problems.
-            </p>
-            <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-          </div>
-        </article>
-         <article class="card" data-course="BSc Data Science">
-          <div class="portrait" style="--tint: #eadfd4">
-            <img src="images/DEVI PRASAD H.jpeg " alt="Meera Rao profile image" loading="lazy"
-              style="border: 5px solid #0e2e6d;">
-            <span class="course">BSc Data Science</span>
-            
-             
-                 
-          </div>
-          <div class="card-body">
-            <h3 class="devi-name">DEVI PRASAD H</h3>
-            <span class="year">1st year</span>
-            <p>I am passionate about technology, programming and exploring the world of data. </p>
-            <div class="tags"><span>C<span>HTML</span><span>CSS</span><span>DSA</span><span>Travelling</span></div>
-            <p class="story-hidden">
-              My name is DEVI PRASAD H. I am a first-year B.Sc. Data
-              Science student at Dayananda Sagar University. I am interested
-              in technology and programming. I am currently
-              learning C programming, HTML and CSS to improvemy technical
-              skills. In my free time, I enjoy COOKING and travelling.
-              My goal is to become a Data Scientist and use technology to solve
-              real-world problems .
-            </p>
-             <div class="github"><a href="https://github.com/Devi-prasad-H">Github</a></div>
-            <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-          </div>
-        </article>
-        <article class="card" data-course="BCA">
-          <div class="portrait" style="--tint: #dce5ea">
-            <img src="images/vish.jpeg" alt="v" loading="lazy">
-            <span class="course">BCA</span>
-          </div>
-          <div class="card-body">
+  if (themeToggle) {
+    themeToggle.setAttribute('aria-pressed', String(isDark));
+    const label = themeToggle.querySelector('span:last-child');
+    if (label) {
+      label.textContent = isDark ? 'Light mode' : 'Dark mode';
+    }
+  }
 
-            <h3>Vishal</h3>
-            <span class="year">1st year</span>
-            <p>Vibe coding my way through the web. Turning ideas into little things for the internet. ⚡</p>
-            <div class="tags"><span>HTML</span><span>Vibe-coding</span><span>Reader</span><span> Vdeo-Editor</span>
-            </div><br>
-            <div class="github"><a href="https://github.com/0vish0king-dot">Github</a></div>
-            <p class="story" hidden>Vibe coding my way through the web. Turning ideas into little things for the
-              internet. ⚡.</p>
-            <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-          </div>
-        </article>
-        <article class="card" data-course="BCA">
-          <div class="portrait" style="--tint: #efe3d8">
-            <img src="images/Pallavi.jpg" alt="Ananya Das profile image" loading="lazy">
-            <span class="course">BCA</span>
-          </div>
-          <div class="card-body">
-            <h3>Pallavi Kumari</h3>
-            <h4>Student of bca ai ds</h4>
-            <span class="year">1st year</span>
-            <p>Making the internet a little more beautiful, one pixel at a time.</p>
-            <div class="tags"><span>UI Design</span><span>CSS</span><span>Art</span></div>
-            <p class="story" hidden>Making the internet a little more beautiful, one pixel at a time. This is a sample
-              profile. Replace it with your own introduction, projects or favourite college memory.</p>
-            <p>i love exploring</p>
-            <div class="tags"><span>UI Design</span><span>Bca c programming by adil sir</span><span>Art</span></div>
-            <p class="story" hidden>Making the internet a little more beautiful, one pixel at a time. This is a sample
-              profile. Replace it with your own introduction, projects or favourite college memory.</p>
-            <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-          </div>
-        </article>
-        <article class="card" data-course="BCA">
-          <div class="portrait" style="--tint: #e4e5d7">
-            <img src="images/vandhana.jpeg" alt="vandhana profile image" loading="lazy">
-            <span class="course">BCA</span>
-          </div>
-          <div class="card-body">
-            <h3>Vandhana V</h3>
-            <span class="year">1st year</span>
-            <p>My hobbies are listening to music,exploring new places,and learning new technologies.</p>
-            <div class="tags"><span>C</span><span>JavaScript</span><span>Music</span></div><br>
-            <a href="https://github.com/Vandhana-282008">GitHub</a>
-            <p class="story" hidden>Small experiments, big curiosity. Learning one commit at a time. </p>
-            <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-          </div>
-        </article>
-        <article class="card" data-course="BCA">
-          <div class="portrait" style="--tint: #e7dfed">
-            <img src="images/RAGH.jpeg" alt="Raghavi J Naik  profile image" loading="lazy">
-            <span class="course">BCA </span>
-          </div>
-          <div class="card-body">
-            <h3>Raghavi J Naik </h3>
-            <span class="year">1st year</span>
-            <p>SOMEWHERE BETWEEN ALGORITHMS AND AMBITIONS CTRL+ALT+DREAM</p>
-            <div class="tags"><span>Python</span><span>HTML</span><SPAN>QUICK LEARNING</SPAN><SPAN>Research and analysis</SPAN></div><br>
-            <div class="github"><a href="https://github.com/raghavinaik2008">MyGithub</a></div>
-            <p class="story" hidden>Exploring machine learning and collecting campus memories.</p>
-            <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-          </div>
-        </article>
-        <article class="card" data-course="BCA">
-          <div class="portrait" style="--tint: #e1e8d9">
-            <img src="images/Yashu.jpeg" alt="Yashwanth VK Profile Image">
-            <span class="course">BCA</span>
-          </div>
-          <div class="card-body">
-            <h3><i>Yashwanth V</i></h3><br>
-            <span class="year">1st year</span>
-            <p>Not a robot, just studying how they think.</p>
-            <div class="tags"><span>Java</span><span>HTML</span><span>Python</span><span>Mathematics Enthusiast</span>
-            </div><br>
-            <p class="story" hidden>🎓 Currently pursuing a Bachelor of Computer Applications (BCA) in Artificial
-              Intelligence & Data Science | Proud DSUian ✨
-              💻 Passionate about coding, 🚀 learning new technologies, and 🤖 exploring the exciting fields of
-              Artificial Intelligence and Data Science... 📊✨</p>
-            <div class="github"><a href="https://github.com/Yashwanth-VK">Github</a></div>
-            <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-          </div>
-        </article>
-        <article class="card" data-course="BCA">
-          <div class="portrait" style="--tint: #e7dfed">
-            <img src="images/fiza.jpeg" alt="Sara Ahmed profile image" loading="lazy">
-            <span class="course">BCA</span>
-          </div>
-          <div class="card-body">
-            <h3>Umme Fiza</h3>
-            <span class="year">1st year</span>
-            <p>Exploring technologies and collecting campus memories.</p>
-            <div class="tags"><span>Python</span><span>HTML</span><span>CSS</span></div><br>
-            <div class="github"><a href="https://github.com/ummefiza27">Github</a></div>
-            <p class="story" hidden>Exploring technologies and collecting campus memories. This is a sample profile.
-              Replace it with your own introduction, projects or favourite college memory.</p>
-            <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-          </div>
-        </article>
-        <article class="card" data-course="BCA">
-          <div class="portrait" style="--tint: #e1e8d9">
-            <img src="images/Prem.jpeg" alt="Prem profile image" loading="lazy">
-            <span class="course">BCA</span>
-          </div>
-          <div class="card-body">
-            <h3>Prem</h3>
-            <span class="year">1st year</span>
-            <p>I turn coffee into code and ideas into little things for the web.</p>
-            <div class="tags"><span>JavaScript</span><span>React</span><span>Singer</span></div>
-            <p class="story" hidden>I turn coffee into code and ideas into little things for the web. This is a sample
-              profile. Replace it with your own introduction, projects and favourite college memory.</p>
-            <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-          </div>
-        </article>
-        <article class="card" data-course="BCA">
-          <div class="portrait" style="--tint: #efe3d8">
-            <img style="border: 2px solid black;" src="images/suraj-das.jpg" alt="Suraj Das profile image"
-              loading="lazy">
-            <span class="course">BCA</span>
-          </div>
-          <div class="card-body">
-            <h3>Suraj Das</h3>
-            <span class="year">1st year</span>
-            <p>Making the internet a little more beautiful, one pixel at a time.</p>
-            <div class="tags"><span>Java script</span><span>CSS</span><span>Art</span></div>
-            <br>
-            <div class="github"><a href="https://github.com/surajdas172345">Github</a></div>
-            <p class="story" hidden>Life is all about 0s and 1s, 99 bugs in the code. Fix one, 127 bugs in the code.</p>
-            <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-          </div>
-        </article>
-        <article class="card" data-course="BCA">
-          <div class="portrait" style="--tint : #ffd6e0">
-            <img src="images/rakshi.jpeg" alt="Rakshita N profile image" loading="lazy">
-            <span class="course">BCA 2026</span>
-          </div>
-          <div class="card-body" style="font-weight:bold">
-            <h3>Rakshita N</h3>
-            <p><i>
-                <marquee>Somewhere between "hello world" and big dreams</marquee>
-              </i></p>
-            <span class="year">1st year</span>
-            <p>BCA student exploring coding, AI and creative content💻.</p>
-            <div class="tags"><span>HTML</span><span>CSS</span><span>Canva Designing</span><span>Video Editing & Reel
-                Editing</span> <br>
-            </div><br>
-            <div class="github" style="background-color: aqua;"><a href="https://github.com/nrakshita66-byte"> My
-                Github</a></div>
-            </a>
-          </div>
-          <p class="story" hidden>Hey! I'm Rakshita, a BCA student exploring the world of technology. 💻✨ I'm currently
-            learning HTML, CSS, C programming, and GitHub while discovering my interests in AI and software development.
-            I love experimenting with new ideas, solving problems, and turning my curiosity into something creative. I'm
-            just getting started, and I'm excited to learn, build, make mistakes, and grow one project at a time! 🚀</p>
-          <div class="card-bottom"><span>A story in progress</span><button class="view">View diary ↗</button></div>
-      </div>
-      </article>
-      </div>
-      <p id="empty" hidden>No profiles found. Try a different search.</p>
-    </section>
-    <section class="contribute">
-      <div>
-        <div class="eyebrow">YOUR FIRST PULL REQUEST STARTS HERE</div>
-        <h2>Turn “hello world”<br>into “hello, everyone.”</h2>
-        <p>Add your photo, tell your story, and make your first contribution.</p>
-      </div>
-      <button id="guide2" class="primary">Add your profile ↗</button>
-    </section>
-  </main>
-  <footer>
-    <a class="brand" href="#">College<span>Diaries.</span></a>
-    <p>Built by students. One pull request at a time.</p>
-    <span>HTML · CSS · JavaScript</span>
-  </footer>
-  <dialog id="modal">
-    <button class="close" aria-label="Close dialog">×</button>
-    <div id="modal-content"></div>
-  </dialog>
-  <script src="app.js"></script>
-</body>
+  try {
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  } catch {
+    // Ignore storage errors in restricted browser contexts.
+  }
+}
 
-</html>
+if (themeToggle) {
+  setTheme(getStoredTheme() === 'dark');
+  themeToggle.addEventListener('click', () => {
+    setTheme(document.body.dataset.theme !== 'dark');
+  });
+}
+
+function render() {
+  if (!search || !grid) return;
+
+  const query = search.value.toLowerCase().trim();
+  let visibleCount = 0;
+
+  for (const card of cards) {
+    const matchesCourse = filter === 'All' || card.dataset.course === filter;
+    const matchesSearch = card.textContent.toLowerCase().includes(query);
+    card.hidden = !matchesCourse || !matchesSearch;
+    if (!card.hidden) visibleCount++;
+  }
+
+  const emptyState = document.querySelector('#empty');
+  if (emptyState) {
+    emptyState.hidden = visibleCount > 0;
+  }
+}
+
+function showProfile(card) {
+  const image = card.querySelector('.portrait img').cloneNode();
+  const name = card.querySelector('h3').textContent;
+  const course = card.dataset.course;
+  const year = card.querySelector('.year').textContent;
+  const story = card.querySelector('.story').textContent;
+
+  content.replaceChildren(image);
+  const heading = document.createElement('h2');
+  heading.textContent = name;
+  const details = document.createElement('p');
+  details.textContent = `${course} · ${year}`;
+  const diary = document.createElement('p');
+  diary.textContent = story;
+  content.append(heading, details, diary);
+  modal.showModal();
+}
+
+function showGuide() {
+  content.innerHTML = `<div class="eyebrow">CONTRIBUTION GUIDE</div>
+    <h2>Add your own diary.</h2>
+    <p>Add one HTML card to the students section. No JSON or JavaScript edits are needed.</p>
+    <ol>
+      <li>Fork and clone the class GitHub repository.</li>
+      <li>Create a branch: <code>git switch -c profile/your-name</code></li>
+      <li>Open <code>index.html</code> and copy a student card inside the <code>id="grid"</code> section. Change the name, course, year, introduction, skills and diary story.</li>
+      <li>Add your photo at <code>images/your-name.jpg</code> and update the card's image path.</li>
+      <li>Run the website locally and check your profile.</li>
+      <li>Commit and push your changes, then open a pull request to your teacher's repository. Include a screenshot.</li>
+    </ol>
+    <pre>git add index.html images/your-name.jpg
+git commit -m "Add my student profile"
+git push -u origin profile/your-name</pre>
+    <p>The teacher reviews and merges each contribution.</p>`;
+  modal.showModal();
+}
+
+if (search) {
+  search.addEventListener('input', render);
+}
+
+document.querySelector('#filters')?.addEventListener('click', event => {
+  const button = event.target.closest('button[data-filter]');
+  if (!button) return;
+  filter = button.dataset.filter;
+  document.querySelectorAll('#filters button').forEach(item => {
+    item.classList.toggle('active', item === button);
+  });
+  render();
+});
+
+grid?.addEventListener('click', event => {
+  const button = event.target.closest('.view');
+  if (button) showProfile(button.closest('.card'));
+});
+document.querySelector('#guide')?.addEventListener('click', showGuide);
+document.querySelector('#guide2')?.addEventListener('click', showGuide);
+document.querySelector('.close')?.addEventListener('click', () => modal.close());
