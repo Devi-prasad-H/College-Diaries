@@ -272,6 +272,10 @@ h2 span {
     letter-spacing: -.6px
 }
 
+.devi-name {
+    color: orange
+}
+
 .year {
     font-size: 11px;
     color: #83887c
