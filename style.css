@@ -544,3 +544,14 @@ transform: translateY(-8px) scale(1.04);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
   z-index: 2;
 }
+
+/* body {
+  background-color: #ffffff;
+  color: #222222;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #eeeeee;
+} */
