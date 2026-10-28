@@ -7,6 +7,7 @@ A beginner-friendly, student-built website where students share their profiles, 
 - Student profiles with photos, introductions, skills, and personal stories
 - Search by name, skill, or interest
 - Filter profiles by course
+- Switch between light and dark themes; your choice is saved for future visits
 - Responsive layout for mobile and desktop
 - Add a profile by editing HTML—no JSON or JavaScript edits needed
 

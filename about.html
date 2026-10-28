@@ -25,29 +25,29 @@
 
             .about-page h2 {
                 margin-bottom: 8px;
-                color: #607949;
+                color: var(--accent);
                 font-family: Georgia, serif;
                 font-size: clamp(23px, 4vw, 30px);
             }
 
             .about-page h3 {
                 margin: 0;
-                color: #283924;
+                color: var(--text);
                 font-size: 18px;
             }
 
             .about-page p {
                 margin-top: 10px;
                 padding: 18px;
-                border: 1px solid #dedfd5;
+                border: 1px solid var(--border);
                 border-radius: 14px;
-                background: #fff;
+                background: var(--surface);
             }
 
             .about-page .back-link {
                 display: inline-block;
                 margin-top: 24px;
-                color: #365b36;
+                color: var(--accent-strong);
                 font-weight: 700;
                 text-decoration: underline;
                 text-underline-offset: 4px;
@@ -61,8 +61,8 @@
                 padding: 10px 14px;
                 transform: translateY(-160%);
                 border-radius: 8px;
-                background: #fff;
-                color: #283924;
+                background: var(--surface);
+                color: var(--text);
                 font-weight: 700;
             }
 
@@ -88,6 +88,8 @@
             <nav aria-label="Main navigation">
                 <a href="index.html#students">The students</a>
                 <a href="index.html">Home</a>
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark theme"
+                    aria-pressed="false">Dark mode</button>
             </nav>
         </header>
         <main id="main" class="about-page">
@@ -118,5 +120,6 @@
             <a class="brand" href="index.html">College<span>Diaries.</span></a>
             <p>Built by students. One pull request at a time.</p>
         </footer>
+        <script src="theme.js"></script>
     </body>
 </html>
